@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq1brk0eisow5"]
+
+[ext_resource type="SpriteFrames" uid="uid://bs3k8gnq8eqeh" path="res://art/sprites/pawn_frames.tres" id="1_b2xm4"]
+
+[node name="Player" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(96, 96)
+sprite_frames = ExtResource("1_b2xm4")
+animation = &"attack"
