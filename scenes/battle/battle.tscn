@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://ovyqwcyp5306"]
+
+[ext_resource type="Script" uid="uid://dem6y8kgjdr14" path="res://scenes/battle/battle.gd" id="1_0yh6x"]
+[ext_resource type="Texture2D" uid="uid://dshmm6t6jimsx" path="res://art/background/background_forest.png" id="2_fh7rg"]
+[ext_resource type="PackedScene" uid="uid://c40csysaen0yu" path="res://scenes/actors/player.tscn" id="2_h0kxc"]
+[ext_resource type="PackedScene" uid="uid://cq1brk0eisow5" path="res://scenes/actors/enemy.tscn" id="3_fh7rg"]
+[ext_resource type="PackedScene" uid="uid://3x13sxhl5stt" path="res://scenes/ui/hud.tscn" id="4_pll4o"]
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_0yh6x")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(160, 92)
+scale = Vector2(0.208333, 0.179688)
+texture = ExtResource("2_fh7rg")
+
+[node name="Actors" type="Node2D" parent="."]
+position = Vector2(0, 40)
+
+[node name="Player" parent="Actors" instance=ExtResource("2_h0kxc")]
+position = Vector2(72, 64)
+
+[node name="Enemy" parent="Actors" instance=ExtResource("3_fh7rg")]
+position = Vector2(216, 64)
+
+[node name="HUDLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="HUDLayer" instance=ExtResource("4_pll4o")]

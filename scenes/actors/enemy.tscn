@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq1brk0eisow5"]
+
+[ext_resource type="SpriteFrames" uid="uid://bs3k8gnq8eqeh" path="res://art/sprites/pawn_frames.tres" id="1_b2xm4"]
+[ext_resource type="Script" uid="uid://bamsp30mk8887" path="res://scenes/actors/enemy.gd" id="1_r3ama"]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_r3ama")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(24, 24)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("1_b2xm4")
+animation = &"attack"
