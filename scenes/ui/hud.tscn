@@ -40,7 +40,7 @@ layout_mode = 2
 theme = ExtResource("1_0mwgc")
 text = "Guard"
 
-[node name="Label" type="Label" parent="."]
+[node name="LogLabel" type="Label" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
 offset_right = 320.0
@@ -48,4 +48,34 @@ offset_bottom = 16.0
 grow_horizontal = 2
 theme = ExtResource("1_0mwgc")
 text = "Log"
+horizontal_alignment = 1
+
+[node name="PlayerHp" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 160.0
+offset_right = 128.0
+offset_bottom = 176.0
+grow_horizontal = 2
+theme = ExtResource("1_0mwgc")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "HP: 10/10"
+horizontal_alignment = 1
+
+[node name="EnemyHp" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 192.0
+offset_top = 160.0
+offset_right = 320.0
+offset_bottom = 176.0
+grow_horizontal = 2
+theme = ExtResource("1_0mwgc")
+theme_override_colors/font_color = Color(0.839384, 0.0122807, 0.22211, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "HP: 8/8"
 horizontal_alignment = 1

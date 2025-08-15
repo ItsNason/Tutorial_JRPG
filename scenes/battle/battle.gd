@@ -14,9 +14,6 @@ func _on_action(action: String) -> void:
 		"attack":
 			if player.has_method("play_attack"):
 				player.play_attack()
-			if player.attack_finished:
-				if enemy.has_method("play_attack"):
-					enemy.play_attack()
 								
 			print("Player attacked")
 		"skill":
