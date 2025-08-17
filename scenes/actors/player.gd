@@ -2,6 +2,7 @@ extends Node2D
 
 signal hp_changed(current_hp: int, max_hp: int)
 signal died()
+signal attack_impact()
 
 @export var attack_animation: String = "attack"
 @export var idle_animation: String = "idle"
@@ -10,24 +11,21 @@ signal died()
 @export var current_hp: int = 15
 
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _ready() -> void:
 	player_sprite.play("idle")
-
-
-func _emit_initial_hp() -> void:
 	# let listeneners (HUD) initialize from the current values.
 	hp_changed.emit(current_hp, max_hp)
-	
-	
+
 # --- Public Action API --- 
  
 func play_attack() -> void:
 	player_sprite.play("attack")
+	animation_player.play("attack_timeline")
 	await player_sprite.animation_finished
 	player_sprite.play("idle")
-
 
 # --- Public Health API --- 
 
@@ -45,3 +43,6 @@ func set_hp(value: int) -> void:
 	if current_hp == 0:
 		died.emit()
 		
+		
+func _on_attack_impact() -> void:
+	attack_impact.emit()

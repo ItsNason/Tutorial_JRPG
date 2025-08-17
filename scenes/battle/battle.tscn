@@ -14,6 +14,10 @@ position = Vector2(160, 92)
 scale = Vector2(0.208333, 0.179688)
 texture = ExtResource("2_fh7rg")
 
+[node name="HUDLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="HUDLayer" instance=ExtResource("4_pll4o")]
+
 [node name="Actors" type="Node2D" parent="."]
 position = Vector2(0, 40)
 
@@ -23,9 +27,7 @@ position = Vector2(72, 64)
 [node name="Enemy" parent="Actors" instance=ExtResource("3_fh7rg")]
 position = Vector2(216, 64)
 
-[node name="HUDLayer" type="CanvasLayer" parent="."]
-
-[node name="HUD" parent="HUDLayer" instance=ExtResource("4_pll4o")]
-
+[connection signal="attack_impact" from="Actors/Player" to="." method="_on_player_attack_impact"]
 [connection signal="hp_changed" from="Actors/Player" to="HUDLayer/HUD" method="_on_player_hp_changed"]
+[connection signal="died" from="Actors/Enemy" to="." method="_on_enemy_died"]
 [connection signal="hp_changed" from="Actors/Enemy" to="HUDLayer/HUD" method="_on_enemy_hp_changed"]
