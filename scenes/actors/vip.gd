@@ -8,41 +8,39 @@ signal attack_impact()
 @export var idle_animation: String = "idle"
 @export var block_animation: String = "block"
 
-@export var	max_hp: int = 10
-@export var current_hp: int = 10
 
-@onready var enemy_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@export var max_hp: int = 20
+@export var current_hp: int = 20
+
+@onready var VIP_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animation_VIP: AnimationPlayer = $AnimationPlayer
 
 
 func _ready() -> void:
-	enemy_sprite.play("idle")
+	VIP_sprite.play("idle")
 	# let listeneners (HUD) initialize from the current values.
 	hp_changed.emit(current_hp, max_hp)
-	
-# --- Public Action API --- 
 
+# --- Public Action API --- 
+ 
 func play_attack() -> void:
-	enemy_sprite.play("attack")
-	animation_player.play("attack_timeline")
-	await enemy_sprite.animation_finished
-	enemy_sprite.play("idle")
-	
+	VIP_sprite.play("attack")
+	animation_VIP.play("attack_timeline")
+	await VIP_sprite.animation_finished
+	VIP_sprite.play("idle")
+
 # --- Public Health API --- 
 
 func apply_damage(amount: int) -> void:
+	VIP_sprite.play("block")
+	await VIP_sprite.animation_finished
 	set_hp(current_hp - amount)
-	enemy_sprite.play("block")
-	if has_node("AnimationPlayer"):
-		animation_player.play("hit")
-
-
-
+	
+	
 func heal(amount: int) -> void:
 	set_hp(current_hp + amount)
 	
 # --- Internal setter that clamps + emits signals --- 
-
 
 func set_hp(value: int) -> void:
 	current_hp = clamp(value, 0, max_hp)

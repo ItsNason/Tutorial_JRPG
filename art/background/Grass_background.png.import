@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxjq3lfk7chtk"
-path="res://.godot/imported/Warrior_Red.png-046a8878b990cf3727e7e27a567bf030.ctex"
+uid="uid://cfq0peubf3441"
+path="res://.godot/imported/Grass_background.png-d868462abea34c6a615f3ef5d214cbe0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/sprites/Warrior_Red.png"
-dest_files=["res://.godot/imported/Warrior_Red.png-046a8878b990cf3727e7e27a567bf030.ctex"]
+source_file="res://art/background/Grass_background.png"
+dest_files=["res://.godot/imported/Grass_background.png-d868462abea34c6a615f3ef5d214cbe0.ctex"]
 
 [params]
 

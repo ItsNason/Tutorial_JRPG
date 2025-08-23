@@ -1,7 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://c40csysaen0yu"]
+[gd_scene load_steps=7 format=3 uid="uid://c40csysaen0yu"]
 
-[ext_resource type="SpriteFrames" uid="uid://1nvl7eup7qdr" path="res://art/sprites/warrior_red_frames.tres" id="1_8137b"]
 [ext_resource type="Script" uid="uid://blb3gdgx0xspu" path="res://scenes/actors/player.gd" id="2_68wq4"]
+[ext_resource type="SpriteFrames" uid="uid://qxsci121us2o" path="res://scenes/actors/friendly_soldier2D_spriteframes.tres" id="2_ru62r"]
+
+[sub_resource type="Animation" id="Animation_ktjr4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
 
 [sub_resource type="Animation" id="Animation_ru62r"]
 resource_name = "attack_timeline"
@@ -32,37 +47,71 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_ktjr4"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_7wueq"]
+resource_name = "hit"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0, 0.166667, 0.233333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.95, 1.05), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.233333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.564706), Color(0.999999, 0.564862, 0.611977, 0.431373), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"attack"]
+"values": [&"block"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7wueq"]
 _data = {
 &"RESET": SubResource("Animation_ktjr4"),
-&"attack_timeline": SubResource("Animation_ru62r")
+&"attack_timeline": SubResource("Animation_ru62r"),
+&"hit": SubResource("Animation_7wueq")
 }
 
 [node name="Player" type="Node2D"]
 script = ExtResource("2_68wq4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(24, 24)
-scale = Vector2(0.5, 0.5)
-sprite_frames = ExtResource("1_8137b")
+position = Vector2(16, 16)
+sprite_frames = ExtResource("2_ru62r")
 animation = &"attack"
-frame = 5
-frame_progress = 1.0
+metadata/_edit_group_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

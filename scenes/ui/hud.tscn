@@ -60,9 +60,25 @@ unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 160.0
+offset_top = 168.0
 offset_right = 128.0
-offset_bottom = 176.0
+offset_bottom = 184.0
+grow_horizontal = 2
+theme = ExtResource("1_0mwgc")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "HP: 10/10"
+horizontal_alignment = 1
+
+[node name="VIPHp" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 152.0
+offset_right = 128.0
+offset_bottom = 168.0
 grow_horizontal = 2
 theme = ExtResource("1_0mwgc")
 theme_override_colors/font_color = Color(1, 1, 1, 1)

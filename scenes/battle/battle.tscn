@@ -1,33 +1,54 @@
-[gd_scene load_steps=6 format=3 uid="uid://ovyqwcyp5306"]
+[gd_scene load_steps=7 format=3 uid="uid://ovyqwcyp5306"]
 
 [ext_resource type="Script" uid="uid://dem6y8kgjdr14" path="res://scenes/battle/battle.gd" id="1_0yh6x"]
-[ext_resource type="Texture2D" uid="uid://dshmm6t6jimsx" path="res://art/background/background_forest.png" id="2_fh7rg"]
+[ext_resource type="Texture2D" uid="uid://cfq0peubf3441" path="res://art/background/Grass_background.png" id="2_fh7rg"]
 [ext_resource type="PackedScene" uid="uid://c40csysaen0yu" path="res://scenes/actors/player.tscn" id="2_h0kxc"]
 [ext_resource type="PackedScene" uid="uid://cq1brk0eisow5" path="res://scenes/actors/enemy.tscn" id="3_fh7rg"]
 [ext_resource type="PackedScene" uid="uid://3x13sxhl5stt" path="res://scenes/ui/hud.tscn" id="4_pll4o"]
+[ext_resource type="PackedScene" uid="uid://cseplrj77rxcu" path="res://scenes/actors/VIP.tscn" id="6_fh7rg"]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_0yh6x")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(160, 92)
-scale = Vector2(0.208333, 0.179688)
+position = Vector2(160, 96)
 texture = ExtResource("2_fh7rg")
 
 [node name="HUDLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="HUDLayer" instance=ExtResource("4_pll4o")]
+offset_left = 8.0
+offset_right = 8.0
 
 [node name="Actors" type="Node2D" parent="."]
 position = Vector2(0, 40)
 
 [node name="Player" parent="Actors" instance=ExtResource("2_h0kxc")]
-position = Vector2(72, 64)
+position = Vector2(88, 40)
 
 [node name="Enemy" parent="Actors" instance=ExtResource("3_fh7rg")]
-position = Vector2(216, 64)
+position = Vector2(216, 40)
+
+[node name="VIP" parent="Actors" instance=ExtResource("6_fh7rg")]
+position = Vector2(40, 32)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 48.0
+color = Color(0.133333, 0.133333, 0.203922, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_top = 144.0
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.133333, 0.133333, 0.203922, 1)
 
 [connection signal="attack_impact" from="Actors/Player" to="." method="_on_player_attack_impact"]
+[connection signal="died" from="Actors/Player" to="." method="_on_player_died"]
 [connection signal="hp_changed" from="Actors/Player" to="HUDLayer/HUD" method="_on_player_hp_changed"]
+[connection signal="attack_impact" from="Actors/Enemy" to="." method="_on_enemy_attack_impact"]
 [connection signal="died" from="Actors/Enemy" to="." method="_on_enemy_died"]
 [connection signal="hp_changed" from="Actors/Enemy" to="HUDLayer/HUD" method="_on_enemy_hp_changed"]
+[connection signal="attack_impact" from="Actors/VIP" to="." method="_on_vip_attack_impact"]
+[connection signal="died" from="Actors/VIP" to="." method="_on_vip_died"]
+[connection signal="hp_changed" from="Actors/VIP" to="HUDLayer/HUD" method="_on_vip_hp_changed"]

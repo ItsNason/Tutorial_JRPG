@@ -6,6 +6,7 @@ signal attack_impact()
 
 @export var attack_animation: String = "attack"
 @export var idle_animation: String = "idle"
+@export var block_animation: String = "block"
 
 @export var max_hp: int = 15
 @export var current_hp: int = 15
@@ -30,8 +31,15 @@ func play_attack() -> void:
 # --- Public Health API --- 
 
 func apply_damage(amount: int) -> void:
-	set_hp(current_hp - amount)
+	set_hp(current_hp - amount) 
+
 	
+func on_hit_animation() -> void:
+	if has_node("AnimationPlayer"):
+		animation_player.play("hit")
+		await player_sprite.animation_finished
+		player_sprite.play("idle")
+
 func heal(amount: int) -> void:
 	set_hp(current_hp + amount)
 	

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqwjp5aes4bb7"
-path="res://.godot/imported/Pawn_Blue_left.png-b107c42d3c81f26b4df09028a5099947.ctex"
+uid="uid://cdw0bg550gtnx"
+path="res://.godot/imported/Soldier-Attack03.png-e6f05772c0b644646fe7c7706f9f16a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/sprites/Pawn_Blue_left.png"
-dest_files=["res://.godot/imported/Pawn_Blue_left.png-b107c42d3c81f26b4df09028a5099947.ctex"]
+source_file="res://art/sprites/Soldier with shadows/Soldier-Attack03.png"
+dest_files=["res://.godot/imported/Soldier-Attack03.png-e6f05772c0b644646fe7c7706f9f16a3.ctex"]
 
 [params]
 
