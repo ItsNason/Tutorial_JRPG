@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://dhtqftrkbxt83"]
+
+[ext_resource type="PackedScene" uid="uid://cp6eq4gp1utyk" path="res://scenes/actors/actor.tscn" id="1_f5syk"]
+[ext_resource type="Texture2D" uid="uid://cyf8jcf1eduan" path="res://art/sprites/Original_art/Solider_Sprite_Green/soldier_2D_SpriteSheet.png" id="2_f5syk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xbjr"]
+atlas = ExtResource("2_f5syk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q60lm"]
+atlas = ExtResource("2_f5syk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivw31"]
+atlas = ExtResource("2_f5syk")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ctou"]
+atlas = ExtResource("2_f5syk")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wdl7"]
+atlas = ExtResource("2_f5syk")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_or8ag"]
+atlas = ExtResource("2_f5syk")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vo6ee"]
+atlas = ExtResource("2_f5syk")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fea7"]
+atlas = ExtResource("2_f5syk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6m5o"]
+atlas = ExtResource("2_f5syk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oxi0y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xbjr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q60lm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivw31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ctou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wdl7")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_or8ag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vo6ee")
+}],
+"loop": false,
+"name": &"block",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_3fea7")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_x6m5o")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[node name="Actor" instance=ExtResource("1_f5syk")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_oxi0y")
