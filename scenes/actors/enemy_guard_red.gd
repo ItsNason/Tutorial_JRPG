@@ -36,7 +36,11 @@ func apply_damage(amount: int) -> void:
 	if has_node("AnimationPlayer"):
 		animation_player.play("hit")
 
-
+func on_hit_animation() -> void:
+	if has_node("AnimationPlayer"):
+		animation_player.play("hit")
+		await enemy_sprite.animation_finished
+		enemy_sprite.play("idle")
 
 func heal(amount: int) -> void:
 	set_hp(current_hp + amount)

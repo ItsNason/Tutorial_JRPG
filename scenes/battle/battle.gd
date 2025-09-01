@@ -5,14 +5,9 @@ extends Node2D
 @onready var enemy_guard_red: Actor = %Enemy_GuardRed
 @onready var VIP: Node2D = $Actors/VIP
 
-enum Turn {
-	GUARD_GREEN,
-	GUARD_ORANGE, 
-	ENEMY_GUARD_RED 
-}
-
-var turn : Turn = Turn.GUARD_GREEN
-var busy := false
+var allies: Array[Actor] = []
+var enemies: Array[Actor] = []
+var order: Array[Actor] = []  # living actors in current round
 
 const DMG_GUARD_GREEN_TO_ENEMY := 3
 const DMG_PARTY_MEMBER_B_TO_ENEMY := 4
@@ -21,8 +16,20 @@ const DMG_ENEMY_TO_ALLIES := 2
 var cover_active := false  # if true, next enemy impact hits Player instead of VIP
 
 func _ready() -> void:
-	# Connect HUD -> Battle using a signal (decoupled)
-	hud.action_selected.connect(_on_action)
+				# Connect HUD -> Battle using a signal (decoupled)
+				#hud.action_selected.connect(_on_action)
+	_collect_and_wire()
+	run_battle_loop()
+	
+func _collect_and_wire() -> void:
+	allies = []
+	enemies = []
+	for a in get_tree().get_nodes_in_group("allies"):
+		if a is Actor:
+			allies.append(a)
+			a.died.connect(_on_actor_died.bind(a))
+	
+	
 	
 func _on_action(action: String) -> void:
 	#if busy or turn != Turn.guard_green:
@@ -52,8 +59,12 @@ func _enemy_turn() -> void:
 		await enemy_guard_red.play_attack()
 		
 func _on_guard_green_attack_impact() -> void:
+	if enemy_guard_red.has_method("on_hit_animation"):
+		enemy_guard_red.on_hit_animation()
+		await enemy_guard_red.on_hit_animation()
 	if enemy_guard_red.has_method("apply_damage"):
 		enemy_guard_red.apply_damage(DMG_GUARD_GREEN_TO_ENEMY)
+	_enemy_turn()
 
 func _on_guard_orange_attack_impact() -> void:
 	if enemy_guard_red.has_method("apply_damage"):

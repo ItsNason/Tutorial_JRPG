@@ -41,7 +41,7 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("2_46q0t")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_oxi0y"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_46q0t"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -90,4 +90,4 @@ animations = [{
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_43oma")
-sprite_frames = SubResource("SpriteFrames_oxi0y")
+sprite_frames = SubResource("SpriteFrames_46q0t")

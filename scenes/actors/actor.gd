@@ -28,7 +28,8 @@ func emit_initial_hp() -> void:
 
 func play_attack() -> void:
 	animation_player.play("attack_timeline")
-	
+	await animation_player.animation_finished
+	sprite.play("idle")
 
 func apply_damage(amount: int) -> void:
 	set_hp(current_hp - amount) 
@@ -37,8 +38,9 @@ func apply_damage(amount: int) -> void:
 func on_hit_animation() -> void:
 	if has_node("AnimationPlayer"):
 		animation_player.play("hit")
+		await animation_player.animation_finished
+		sprite.play("idle")
 		
-
 func heal(amount: int) -> void:
 	set_hp(current_hp + amount)
 	
