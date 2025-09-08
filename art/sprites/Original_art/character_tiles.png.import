@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnicaa73aysyv"
-path="res://.godot/imported/ranger_tile.png-1173520e5b568f3b0fec96363355e9ce.ctex"
+uid="uid://cppywouuvugoy"
+path="res://.godot/imported/character_tiles.png-1d7518071e9353e263d862d167a3f751.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/sprites/Original_art/ranger_tile.png"
-dest_files=["res://.godot/imported/ranger_tile.png-1173520e5b568f3b0fec96363355e9ce.ctex"]
+source_file="res://art/sprites/Original_art/character_tiles.png"
+dest_files=["res://.godot/imported/character_tiles.png-1d7518071e9353e263d862d167a3f751.ctex"]
 
 [params]
 

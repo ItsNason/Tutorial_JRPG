@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Tutorial_JRPG"
+config/name="First_Game"
 run/main_scene="uid://ovyqwcyp5306"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"

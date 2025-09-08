@@ -8,35 +8,38 @@ signal attack_impact()
 @export var idle_animation: String = "idle"
 @export var block_animation: String = "block"
 
+@export var max_hp: int = 15
+@export var current_hp: int = 15
 
-@export var max_hp: int = 20
-@export var current_hp: int = 20
-
-@onready var VIP_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var animation_VIP: AnimationPlayer = $AnimationPlayer
+@onready var vip_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _ready() -> void:
-	VIP_sprite.play("idle")
+	vip_sprite.play("idle")
 	# let listeneners (HUD) initialize from the current values.
 	hp_changed.emit(current_hp, max_hp)
 
 # --- Public Action API --- 
  
 func play_attack() -> void:
-	VIP_sprite.play("attack")
-	animation_VIP.play("attack_timeline")
-	await VIP_sprite.animation_finished
-	VIP_sprite.play("idle")
+	vip_sprite.play("attack")
+	animation_player.play("attack_timeline")
+	await vip_sprite.animation_finished
+	vip_sprite.play("idle")
 
 # --- Public Health API --- 
 
 func apply_damage(amount: int) -> void:
-	VIP_sprite.play("block")
-	await VIP_sprite.animation_finished
-	set_hp(current_hp - amount)
+	set_hp(current_hp - amount) 
+
 	
-	
+func on_hit_animation() -> void:
+	if has_node("AnimationPlayer"):
+		animation_player.play("hit")
+		await vip_sprite.animation_finished
+		vip_sprite.play("idle")
+
 func heal(amount: int) -> void:
 	set_hp(current_hp + amount)
 	
@@ -47,6 +50,7 @@ func set_hp(value: int) -> void:
 	hp_changed.emit(current_hp, max_hp)
 	if current_hp == 0:
 		died.emit()
+		
 		
 func _on_attack_impact() -> void:
 	attack_impact.emit()

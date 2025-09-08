@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cchpah6rmbdil"
-path="res://.godot/imported/mage_tile.png-0311767f53f41c797999f09302c67492.ctex"
+uid="uid://kf33w5f3yrht"
+path="res://.godot/imported/character_tiles.png-b057e05ad56eff44585ae68d157986e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/sprites/Original_art/mage_tile.png"
-dest_files=["res://.godot/imported/mage_tile.png-0311767f53f41c797999f09302c67492.ctex"]
+source_file="res://art/sprites/Original_art/Solider_Sprite_Green/character_tiles.png"
+dest_files=["res://.godot/imported/character_tiles.png-b057e05ad56eff44585ae68d157986e7.ctex"]
 
 [params]
 
