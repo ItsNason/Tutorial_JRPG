@@ -41,7 +41,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_l8dun")
 }],
 "loop": false,
-"name": &"block",
+"name": &"guard",
 "speed": 8.0
 }, {
 "frames": [{

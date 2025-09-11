@@ -48,7 +48,6 @@ func _ready() -> void:
 
 	# relay AP finished -> attack_finished
 	animation_player.animation_finished.connect(_on_ap_finished)  # AnimationPlayer signal
-		
 	# clamp/init HP and broadcast once so HUD can sync
 	current_hp = clamp(current_hp, 0, max_hp)
 	hp_changed.emit(current_hp, max_hp)
@@ -65,7 +64,7 @@ func apply_damage(amount: int) -> void:
 	guarding = false
 	_set_hp(current_hp - dmg)
 	_play_hit_react() # small tweened flinch
-	
+
 	
 # --- Helpers ----------------------------------------------------------------------------------
 func _set_hp(value: int) -> void:
@@ -85,7 +84,7 @@ func _on_ap_finished(animation_name: StringName) -> void:
 		attack_finished.emit()
 		if not guarding:
 			_play_if_exists(idle_animation)
-
+		
 func _play_if_exists(animation_name: StringName) -> void:
 	if sprite.sprite_frames and sprite.sprite_frames.has_animation(animation_name):
 		sprite.play(animation_name)
@@ -97,8 +96,10 @@ func _play_hit_react(duration := 0.18) -> void:
 	var start_mod := sprite.modulate
 	_play_if_exists(guard_animation)
 	var tw := create_tween()
-	tw.tween_property(sprite, "scale", start_scale * Vector2(1.08, 0.92), duration * 0.45)
-	tw.tween_property(sprite, "scale", start_scale,                     duration * 0.55)
-	tw.parallel().tween_property(sprite, "modulate", Color(1,1,1,0.7),  duration * 0.30)
-	tw.parallel().tween_property(sprite, "modulate", start_mod,         duration * 0.70) 
-	
+	tw.tween_property(sprite, "scale", start_scale * Vector2(1.08, 0.92), duration * 0.5)
+	tw.tween_property(sprite, "scale", start_scale,                     duration * 0.5)
+	tw.parallel().tween_property(sprite, "modulate", Color(1,1,1,0.7),  duration * 1.0)
+	tw.parallel().tween_property(sprite, "modulate", start_mod,         duration * 1.0) 
+	tw.tween_interval(0.5)
+	await tw.finished
+	_play_if_exists(idle_animation)

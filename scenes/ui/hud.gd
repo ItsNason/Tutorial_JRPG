@@ -25,7 +25,7 @@ signal action_selected(action: String)
 
 
 func _ready() -> void:
-	# Wires buttons to emite a single, decouple signal Battle awaits.
+	# Wires buttons to emit a single, decouple signal Battle awaits.
 	_attack_btn.pressed.connect(func(): action_selected.emit("attack"))
 	_guard_btn.pressed.connect(func(): action_selected.emit("guard"))
 	_skill_btn.pressed.connect(func(): action_selected.emit("skill"))

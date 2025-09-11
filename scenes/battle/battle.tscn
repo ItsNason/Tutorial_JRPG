@@ -29,10 +29,8 @@ tile_set = SubResource("TileSet_oiw7q")
 [node name="HUDLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="HUDLayer" instance=ExtResource("4_pll4o")]
-offset_left = 9.0
-offset_top = 2.0
-offset_right = 9.0
-offset_bottom = 2.0
+offset_left = 4.0
+offset_right = 4.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Actors" type="Node2D" parent="."]
@@ -70,12 +68,20 @@ offset_bottom = 180.0
 color = Color(0.133333, 0.133333, 0.203922, 1)
 metadata/_edit_use_anchors_ = true
 
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 135.0
+offset_top = 108.0
+offset_right = 455.0
+offset_bottom = 144.0
+scale = Vector2(0.184615, 1.99498)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.133333, 0.133333, 0.203922, 1)
+metadata/_edit_use_anchors_ = true
+
 [connection signal="attack_impact" from="Actors/Enemy_GuardRed" to="." method="_on_enemy_guard_red_attack_impact"]
-[connection signal="died" from="Actors/Enemy_GuardRed" to="." method="_on_enemy_guard_red_died"]
 [connection signal="hp_changed" from="Actors/Enemy_GuardRed" to="HUDLayer/HUD" method="_on_enemy_guard_red_hp_changed"]
 [connection signal="attack_impact" from="Actors/Guard_1" to="." method="_on_guard_1_attack_impact"]
-[connection signal="died" from="Actors/Guard_1" to="." method="_on_guard_1_died"]
 [connection signal="hp_changed" from="Actors/Guard_1" to="HUDLayer/HUD" method="_on_guard_1_hp_changed" flags=3]
 [connection signal="attack_impact" from="Actors/VIP" to="." method="_on_vip_attack_impact"]
-[connection signal="died" from="Actors/VIP" to="." method="_on_vip_died"]
 [connection signal="hp_changed" from="Actors/VIP" to="HUDLayer/HUD" method="_on_vip_hp_changed"]

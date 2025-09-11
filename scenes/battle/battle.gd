@@ -9,7 +9,7 @@ extends Node2D
 
 # --- Tunables -------------------------------------------------------------------------------------
 const DMG_PLAYER_ATTACK := 3
-const DMG_ENEMY_ATTACK  := 2
+const DMG_ENEMY_ATTACK  := 5
 const TURN_BREATH_SEC   := 0.15
 
 
@@ -52,7 +52,7 @@ func _collect_and_wire() -> void:
 	var vip_list := get_tree().get_nodes_in_group("vip")
 	if not vip_list.is_empty() and vip_list[0] is Actor:
 		vip = vip_list[0] as Actor
-		vip.died.connect(_on_actor_died)
+		#vip.died.connect(_on_actor_died)
 
 	print("Collected -> allies:", allies.size(), " enemies:", enemies.size())  #testing
 
@@ -72,13 +72,6 @@ func _rebuild_order() -> void:
 	for e in enemies:
 		if is_instance_valid(e) and e.current_hp > 0:
 			order.append(e)
-	
-	var names := [] 									# testing
-	for a in order: 									# testing
-		names.append(a.name) 							# testing
-	print("ORDER:", names, " idx:", idx) 				# testing
-	
-	idx = 0
 
 func _on_actor_died(actor: Actor) -> void:
 	# prune from lists and current round
@@ -120,8 +113,10 @@ func run_battle_loop() -> void:
 		
 		# check if current turn actor is in allies or enemies and call accordingly
 		if current.is_in_group("allies"):
+			await get_tree().create_timer(0.5).timeout
 			await _run_player_turn(current)
 		else:
+			await get_tree().create_timer(0.5).timeout
 			await _run_enemy_turn(current)
 			
 		await _pause(TURN_BREATH_SEC)
@@ -159,7 +154,20 @@ func _run_player_turn(actor: Actor) -> void:
 		"item":
 			_log("Items not implemented.")
 		"skill":
-			_log("Skills not implemented.")
+			_log("Dual-strike!")
+			var target := _first_living(enemies)
+			if target == null:
+				_log("No targets.")
+				busy = false
+				return
+			var i = 0
+			while i < 2:
+				# Start the attack timeline and wait for the impact moment mid-animation
+				actor.play_attack() 
+				await actor.attack_impact # damage lands at call-method key inside the timeline
+				target.apply_damage(DMG_PLAYER_ATTACK)
+				await actor.attack_finished
+				i += 1
 		_:
 			_log("Action not recognized.")
 	
@@ -218,19 +226,3 @@ func _log(text: String) -> void:
 		
 # --- End ------------------------------------------------------------------------------------------
 # ==================================================================================================
-
-
-func _on_vip_died(actor: Actor) -> void:
-	pass # Replace with function body.
-
-
-func _on_vip_attack_impact() -> void:
-	pass # Replace with function body.
-
-
-func _on_guard_1_died(actor: Actor) -> void:
-	pass # Replace with function body.
-
-
-func _on_guard_1_attack_impact() -> void:
-	pass # Replace with function body.

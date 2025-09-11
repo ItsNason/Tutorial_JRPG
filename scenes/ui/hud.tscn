@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://3x13sxhl5stt"]
+[gd_scene load_steps=9 format=3 uid="uid://3x13sxhl5stt"]
 
 [ext_resource type="Theme" uid="uid://pist536httmm" path="res://theme.tres" id="1_0mwgc"]
 [ext_resource type="Script" uid="uid://c8sivqhcorj6t" path="res://scenes/ui/hud.gd" id="1_8qguk"]
 [ext_resource type="FontFile" uid="uid://cfe04ue6d0cwn" path="res://art/font/press_start/PrStart.ttf" id="3_8qguk"]
 [ext_resource type="StyleBox" uid="uid://dw26cbroarosq" path="res://scenes/ui/HP_Bar_temp.tres" id="3_bo48s"]
+[ext_resource type="PackedScene" uid="uid://dnln04xilrvjd" path="res://scenes/ui/skill_menu.tscn" id="5_136eg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qguk"]
 bg_color = Color(0, 0, 0, 1)
@@ -101,6 +102,7 @@ step = 1.0
 
 [node name="VipLabels" type="HBoxContainer" parent="."]
 z_index = 5
+layout_mode = 0
 offset_left = 8.0
 offset_top = 170.0
 offset_right = 128.0
@@ -156,3 +158,10 @@ theme_override_font_sizes/font_size = 8
 theme_override_styles/background = SubResource("StyleBoxFlat_oj5la")
 theme_override_styles/fill = ExtResource("3_bo48s")
 step = 1.0
+
+[node name="SkillMenu" parent="." instance=ExtResource("5_136eg")]
+layout_mode = 1
+offset_left = 72.0
+offset_top = 126.0
+offset_right = 72.0
+offset_bottom = 126.0
